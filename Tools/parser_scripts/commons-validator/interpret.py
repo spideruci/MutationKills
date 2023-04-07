@@ -384,7 +384,7 @@ with open("commons-validator.csv", 'w', encoding='UTF8') as f:
                 row[1]= info["file_name"]
                 row[2]=info["line_number"]
                 row[3]=info["mutator"].split(".")[-1][:-7]
-                row[4]="killed"
+                row[4]="survive"
                 row[5]=test_case["test_id"]
                 row[6]="pass"
                 writer.writerow(row)
