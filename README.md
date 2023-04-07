@@ -95,7 +95,7 @@ docker pull qinfendeheichi/validator-replication:latest
 ```
 run the container with a name (exp_container)
 ``` 
-docker run —name exp_container qinfendeheichi/validator-replication
+docker run --name exp_container qinfendeheichi/validator-replication
 ```
 get the csv file and venn graph from the container to the current directory
 ```
