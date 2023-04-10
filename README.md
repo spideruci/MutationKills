@@ -5,9 +5,9 @@ This project includes the experiment setUp for **To kIll a Mutant: An Empirical 
 ## 1.1 data/csvs:  
 detailed csv data for mutation kills.  
 
-data1.zip contain 5 csv files for xmlgraphics, jsoup, joda-time, gson, commons-validator. 
+data2.zip contain 5 csv files for xmlgraphics, jsoup, joda-time, gson, commons-validator. 
 
-data2.zip contains 5 csv files for commons-csv, commons-io, commons-jexl, commons-lang, commons-text. 
+data1.zip contains 5 csv files for commons-csv, commons-io, commons-jexl, commons-lang, commons-text. 
 
 ### 1.1.1 rows in csv file:  
 Each row in the csv file has these fields:  
