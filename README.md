@@ -10,8 +10,10 @@ This project includes the experiment setUp for **To kIll a Mutant: An Empirical 
     - [Oracle Tracker](#tools-oracletracker)
     - [modified PIT](#tools-pit)
     - [parsing scripts](#tools-parser_scripts)
-- [How to run the experiment?](#how-to-run-the-experiment-for-each-subject-program)
-- [A replication example](#a-fast-real-example-with-a-docker-container)
+
+- [Getting Started](#getting-started)
+- [Detailed Instructions](#detailed-instructions)
+- [How to run the experiment in general?](#how-to-run-the-experiment-for-each-subject-program)
 
 
 # Directory structure:
@@ -60,44 +62,9 @@ To parse the text report from PIT. All output from System Standard Error would b
 Place info.txt and interpret.py under the same directory
 A csv file and a Venn Graph will be generated.
 
-# How to run the experiment for each subject program
 
-## 2.1 install PIT
 
-Go to PIT_modified, run:
-```
-mvn clean install -Dmaven.test.skip
-```
-
-## 2.2 generate jar files to instrument source code/test code
-go to oracle tracker, then run: 
-```
-mvn clean compile assembly:single
-```
-to distinguish the jar file for source code and test code, simply replace "testthrow " with "sourcethrow " in OracleVisitor.java at line 47.
-We already placed both two jar files for the subject programs.
-
-## 2.3 Run mutation testing
-go to subject program's directory, run
-
-```
-mvn clean compile test-compile
-java -jar "source-throw.jar" target/classes
-java -jar "test-throw.jar" target/test-classes
-mvn -Dmaven.main.skip pitest:mutationCoverage >info.txt 2>result.txt
-```
-
-for multi-module project like gson, instrument all source code/test code compiled files separtely. Then install it with bypassing recompilation. 
-
-## 2.4 generate csv file and a venn graph
-
-put the appropriate interpret.py file under subject project's directory, and run:
-
-```
-python interpret.py
-```
-
-# A fast real example with a Docker Container
+# Getting Started
 
 To demonstrate how the experiment was run, we configured a Docker image for **commons-validator**. The whole experiment should cost around 5 minutes.  
 
@@ -114,6 +81,45 @@ get the csv file and venn graph from the container to the current directory
 ```
 docker cp exp_container:/commons-validator/project/commons-validator.csv .
 docker cp exp_container:/commons-validator/project/commons-validator.png .
+```
+
+# Detailed Instructions
+
+# How to run the experiment for each subject program
+
+## install PIT
+
+Go to PIT_modified, run:
+```
+mvn clean install -Dmaven.test.skip
+```
+
+## generate jar files to instrument source code/test code
+go to oracle tracker, then run: 
+```
+mvn clean compile assembly:single
+```
+to distinguish the jar file for source code and test code, simply replace "testthrow " with "sourcethrow " in OracleVisitor.java at line 47.
+We already placed both two jar files for the subject programs.
+
+## Run mutation testing
+go to subject program's directory, run
+
+```
+mvn clean compile test-compile
+java -jar "source-throw.jar" target/classes
+java -jar "test-throw.jar" target/test-classes
+mvn -Dmaven.main.skip pitest:mutationCoverage >info.txt 2>result.txt
+```
+
+for multi-module project like gson, instrument all source code/test code compiled files separtely. Then install it with bypassing recompilation. 
+
+## generate csv file and a venn graph
+
+put the appropriate interpret.py file under subject project's directory, and run:
+
+```
+python interpret.py
 ```
 
 
