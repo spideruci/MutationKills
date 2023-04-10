@@ -1,15 +1,28 @@
 # MutationKills
 This project includes the experiment setUp for **To kIll a Mutant: An Empirical Study of Mutation Testing Kills**
 
-# 1. Directory structure:
-## 1.1 data/csvs:  
+# Table of Contents
+- [Directory structure](#directory-structure)
+  - [data-csvs](#data-csvs)
+    - [interpret csv file](#rows-in-csv-file)
+  - [subject programs](#subject-programs)
+  - [Tools](#tools)
+    - [Oracle Tracker](#tools-oracletracker)
+    - [modified PIT](#tools-pit)
+    - [parsing scripts](#tools-parser_scripts)
+- [How to run the experiment?](#how-to-run-the-experiment-for-each-subject-program)
+- [A replication example](#a-fast-real-example-with-a-docker-container)
+
+
+# Directory structure:
+## data-csvs:  
 detailed csv data for mutation kills.  
 
 data2.zip contain 5 csv files for xmlgraphics, jsoup, joda-time, gson, commons-validator. 
 
 data1.zip contains 5 csv files for commons-csv, commons-io, commons-jexl, commons-lang, commons-text. 
 
-### 1.1.1 rows in csv file:  
+### rows in csv file:  
 Each row in the csv file has these fields:  
 
 | Field               | Description                                                 |
@@ -26,28 +39,28 @@ Each row in the csv file has these fields:
 | loc                 | The location of the exception (first line of the stack trace)|
 
 
-## 1.2 subject programs
+## subject programs
 We included the subject programs under this directory. All programs have already been configured to run the experiment. 
 
-## 1.3 Tools
+## Tools
 
-### 1.3.1 Tools/OracleTracker
+### Tools-OracleTracker
 This project aims at instrumenting the project's code for the instantation of Exception or Error. 
 
 We placed the generated jar files, **source-throw.jar** and **test-throw.jar** in subject programs.
 
-### 1.3.2Tools/PIT
+### Tools-PIT
 This project is based on PIT 1.9.5 for running mutation testing.
 
 We choose to print the each failing test's exception type, lineNumber, FileName, and MethodName on the scene. 
 We also print the start of each test case.
 
-### 1.3.3 Tools/parser_scripts
+### Tools-parser_scripts
 To parse the text report from PIT. All output from System Standard Error would be directed to the file **info.txt**.   
 Place info.txt and interpret.py under the same directory
 A csv file and a Venn Graph will be generated.
 
-# 2. How to run the experiment for each subject program?
+# How to run the experiment for each subject program
 
 ## 2.1 install PIT
 
@@ -84,7 +97,7 @@ put the appropriate interpret.py file under subject project's directory, and run
 python interpret.py
 ```
 
-# 3. A fast real example with a Docker Container
+# A fast real example with a Docker Container
 
 To demonstrate how the experiment was run, we configured a Docker image for **commons-validator**. The whole experiment should cost around 5 minutes.  
 
