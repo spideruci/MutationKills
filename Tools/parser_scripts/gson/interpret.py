@@ -298,7 +298,7 @@ plt.clf()
 
 header = ['mutation_id','mutated_file','mutated_line_number',"mutator","mutation_state",
           'test_id',"test_state","exception","cause","loc"]
-with open("commons-lang.csv", 'w', encoding='UTF8') as f:
+with open("gson.csv", 'w', encoding='UTF8') as f:
     writer = csv.writer(f)
     # write the header
     writer.writerow(header)
@@ -349,7 +349,7 @@ with open("commons-lang.csv", 'w', encoding='UTF8') as f:
                 row[1]= info["file_name"]
                 row[2]=info["line_number"]
                 row[3]=info["mutator"].split(".")[-1][:-7]
-                row[4]="survive"
+                row[4]="killed"
                 row[5]=test_case["test_id"]
                 row[6]="pass"
                 writer.writerow(row)
