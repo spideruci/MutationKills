@@ -24,6 +24,11 @@ This project includes the experiment setUp for **To kIll a Mutant: An Empirical 
     - [commons-text](#commons-text)
    
 - [Detailed Instructions](#detailed-instructions)
+  - [RQ1](#RQ1)
+  - [RQ2](#RQ2)
+  - [RQ3](#RQ3)
+  - [RQ4](#RQ4)
+
 - [General Logics](#general-experimental-setups)
 
 
@@ -239,6 +244,22 @@ docker cp commons-jexl:/commons-jexl/project/commons-jexl.png .
 
 
 # Detailed Instructions
+
+In this section, we use this artifact to back up key claims described in the paper.  
+
+From [Getting Started](#getting-started) section, we get a **csv file** (details explained [here](#rows-in-csv-file) and a **venn graph**. 
+Now we are going to extract relevant data from the csv file to repliate claims we made in the research paper.  
+
+Notice that due to the possibility of some variation due to flakiness, the results obtained from the data analysis presented in the paper are expected to be **pretty close** to those obtained in another experimental run. This supports the general conclusions and claims made in the paper.
+
+## RQ1
+
+## RQ2
+
+## RQ3
+
+## RQ4
+
 
 # General experimental setups
 This is the general logics to to run the experiment
