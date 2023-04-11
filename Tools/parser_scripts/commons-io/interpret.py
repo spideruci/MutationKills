@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[21]:
+# In[1]:
 
 
 import re
@@ -13,7 +13,7 @@ import csv
 from matplotlib_venn import venn3
 
 
-# In[22]:
+# In[2]:
 
 
 # there exists a line that violate the text rule
@@ -32,7 +32,7 @@ def get_abnormal(info):
     return [m for m in info if m["status"]=="abnormal"]
 
 
-# In[23]:
+# In[3]:
 
 
 def read_mutation_detail(detail_str):
@@ -58,7 +58,7 @@ def read_mutation_detail(detail_str):
     return result, test_cases
 
 
-# In[24]:
+# In[6]:
 
 
 flag = False #skip abnormal mutants(runerror, memoryerror, nonviable)
@@ -73,12 +73,13 @@ for line_num, line in enumerate(Lines()):
     
     detected = len(re.findall("detected = ",line))!=0 and len(re.findall("detected = NON_VIABLE",line))==0
     mutation_details = re.findall("Running mutation MutationDetails \[.*\]",line)
-    start = len(re.findall("stderr  : start: ", line))!=0
-    EX = len(re.findall("stderr  : sourcethrow ",line))!=0 or len(re.findall("stderr  : testthrow ",line))!=0
+    start = len(re.findall(" start: ", line))!=0
+    
+    EX = len(re.findall(" sourcethrow ",line))!=0 or len(re.findall(" testthrow ",line))!=0
     fail = len(re.findall("stderr  : exception ",line))!=0  
     
     if start:
-        test_start = line.split("stderr  : start: ")[1]
+        test_start = line.split(" start: ")[1]
         records.append([test_start[:-1]])
 
     if EX:
@@ -135,7 +136,7 @@ else:
 
 # # Verify the number of killing tests the same as PIT
 
-# In[25]:
+# In[7]:
 
 
 def read_killed_mutation_detail(detail_str):
@@ -186,7 +187,7 @@ for line in Lines():
 
 # fix variation in the same line
 
-# In[26]:
+# In[8]:
 
 
 temp =0
@@ -215,7 +216,7 @@ for mutation in mutated_info:
      
 
 
-# In[29]:
+# In[11]:
 
 
 print("failing test runs: " + str(sum(counts)))
@@ -224,7 +225,7 @@ print("failing test runs: " + str(sum(counts)))
 assert(sum(result2) == sum(counts))
 
 
-# In[30]:
+# In[12]:
 
 
 for mutation in mutated_info:
@@ -241,7 +242,7 @@ for mutation in mutated_info:
                 
 
 
-# In[31]:
+# In[13]:
 
 
 exceptions = dict()
@@ -257,7 +258,7 @@ for mutation in mutated_info:
                     exceptions[e]+=1
 
 
-# In[38]:
+# In[56]:
 
 
 # org.opentest4j.AssertionFailedError
@@ -273,13 +274,13 @@ for mutation in mutated_info:
 #                     print(test_case["record"])
 
 
-# In[39]:
+# In[14]:
 
 
 exceptions
 
 
-# In[40]:
+# In[15]:
 
 
 for mutation in mutated_info:
@@ -320,7 +321,7 @@ for mutation in mutated_info:
                     
 
 
-# In[42]:
+# In[16]:
 
 
 fail_num  =0
@@ -334,14 +335,14 @@ for mutation in mutated_info:
                     defensive_num +=1
 
 
-# In[44]:
+# In[17]:
 
 
 with open('mutations.pickle', 'wb') as handle:
     pickle.dump(mutated_info, handle)
 
 
-# In[45]:
+# In[18]:
 
 
 with open('mutations.pickle', 'rb') as handle:
@@ -369,7 +370,7 @@ plt.savefig("commons-io" +".png")
 plt.clf()
 
 
-# In[46]:
+# In[19]:
 
 
 header = ['mutation_id','mutated_file','mutated_line_number',"mutator","mutation_state",

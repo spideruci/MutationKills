@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[2]:
+
+
 import re
 import pickle
 import time
@@ -9,6 +12,7 @@ import matplotlib.pyplot as plt
 import csv
 from matplotlib_venn import venn3
 
+#
 base = "info.txt"
 def Lines():
     with open(base, encoding='utf-8',errors = "ignore") as inf:
@@ -44,11 +48,16 @@ def read_mutation_detail(detail_str):
     result["line_number"] = line_number
     return result, test_cases
 
+
+# In[6]:
+
+
 flag = False #skip abnormal mutants(runerror, memoryerror, nonviable)
 mutated_info = []
 records = []
 first = True
 further_analysis = []
+found = False
 for line_num, line in enumerate(Lines()):
     detected = len(re.findall("detected = ",line))!=0 and len(re.findall("detected = NON_VIABLE",line))==0
     mutation_details = re.findall("Running mutation MutationDetails \[.*\]",line)
@@ -64,11 +73,19 @@ for line_num, line in enumerate(Lines()):
         if len(records) > 0 and not isinstance(records[-1][-1],list):
             if isinstance(records[-1][-1],list):
                 continue
-                
+            found = False
             if " sourcethrow " in line:
-                records[-1].append("EXSource " + line.split(" sourcethrow ")[1])  
+                for r in records[-1][1:]:
+                    if r == "EXSource " + line.split(" sourcethrow ")[1]:
+                        found = True
+                if not found:
+                    records[-1].append("EXSource " + line.split(" sourcethrow ")[1])  
             else:
-                records[-1].append("EXTest " + line.split(" testthrow ")[1])
+                for r in records[-1][1:]:
+                    if r=="EXTest " + line.split(" testthrow ")[1]:
+                        found = True
+                if not found:
+                    records[-1].append("EXTest " + line.split(" testthrow ")[1])
     if fail:
         exception_record = re.split("stderr  : exception ",line)[1].split(" ")
         exception_record[-1] = exception_record[-1][:-1]
@@ -78,7 +95,7 @@ for line_num, line in enumerate(Lines()):
             if flag:
                 for i in range(len(mutated_info[-1]["test_cases"])):
                     mutated_info[-1]["test_cases"][i]["record"] = records[i]           
-                        
+     
             else:
                 mutated_info[-1]["status"]="abnormal"
         first = False
@@ -105,6 +122,10 @@ if flag:
         mutated_info[-1]["test_cases"][i]["record"] = records[i]
 else:
     mutated_info[-1]["status"]="abnormal"
+
+
+# In[4]:
+
 
 def read_killed_mutation_detail(detail_str):
     mutation_class = re.findall("clazz=.*?,",detail_str)[0][6:-1]
@@ -137,6 +158,10 @@ for line in Lines():
         mutation_info,test_cases = read_killed_mutation_detail(line)
         result2.append(len(test_cases))
 
+
+# In[5]:
+
+
 counts=[]
 for mutation in mutated_info:
     if mutation["status"]=="abnormal":
@@ -155,12 +180,33 @@ for mutation in mutated_info:
     counts.append(count)
         
 
+
+# In[ ]:
+
+
+
+
+
+# In[6]:
+
+
 #stderr  : Exception in thread "Thread-42" exception org.opentest4j.AssertionFailedError org.junit.jupiter.api.AssertionUtils AssertionUtils.java fail 39
+
+
+# In[7]:
 
 
 print("failed test runs: " + str(sum(result2)))
 assert(sum(result2) == sum(counts))
+
+
+# In[8]:
+
+
 #further process
+
+
+# In[9]:
 
 
 for mutation in mutated_info:
@@ -175,6 +221,15 @@ for mutation in mutated_info:
                 test_case["state"] = "fail"
                 test_case["Exception"].append(record[0])
                 mutation["status"]="killed"
+
+
+# In[10]:
+
+
+len(mutated_info)
+
+
+# In[11]:
 
 
 exceptions = dict()
@@ -192,6 +247,10 @@ for mutation in mutated_info:
 # print(check_exception_num)
 print("Attention: some test cases might have two exceptions")
 
+
+# In[12]:
+
+
 # CHECK AssertionError
 # check_set = set()
 # check_num = 0
@@ -207,6 +266,10 @@ print("Attention: some test cases might have two exceptions")
 # check_set                   
 # check_num
 
+
+# In[13]:
+
+
 # exceptions
 # org.junit
 # java.lang.AssertionError all are from junit
@@ -214,7 +277,7 @@ print("Attention: some test cases might have two exceptions")
 
 # # label assertion failure
 
-# In[41]:
+# In[14]:
 
 
 for mutation in mutated_info:
@@ -277,6 +340,10 @@ for mutation in mutated_info:
                             test_case["assertion_failure"]=True  
                         continue
 
+
+# In[15]:
+
+
 fail_num  =0
 defensive_num = 0
 for mutation in mutated_info:
@@ -287,35 +354,45 @@ for mutation in mutated_info:
                 if test_case["defensive"]:
                     defensive_num +=1
                     
-with open('mutations.pickle', 'wb') as handle:
-    pickle.dump(mutated_info, handle)
+
+
+# In[16]:
+
+
+# with open('mutations.pickle', 'wb') as handle:
+#     pickle.dump(mutated_info, handle)
+
+
+# In[17]:
 
 
 data = mutated_info
 
-a,b,c = set(),set(),set()
-killed = get_killed(data)
-survive = get_survive(data)
-all_mutant = killed+survive
-for index,mutant in enumerate(all_mutant):
-    for test_case in mutant["test_cases"]:
-        if test_case["state"]=="fail":
-            if test_case["defensive"]==True:
-                a.add(index)
-            elif test_case["assertion_failure"]==True:
-                b.add(index)
-            else:
-                c.add(index)
-plt.figure(figsize=(10,10),dpi = 500)          
-venn3(subsets = [a,b,c], set_labels = ('source code oracle', 'test code oracle',"trivial crash"))
-plt.title("kiled mutants", fontdict={'fontsize': 14})
-plt.savefig("commons-jexl.png")
-plt.clf()
+# a,b,c = set(),set(),set()
+# killed = get_killed(data)
+# survive = get_survive(data)
+# all_mutant = killed+survive
+# for index,mutant in enumerate(all_mutant):
+#     for test_case in mutant["test_cases"]:
+#         if test_case["state"]=="fail":
+#             if test_case["defensive"]==True:
+#                 a.add(index)
+#             elif test_case["assertion_failure"]==True:
+#                 b.add(index)
+#             else:
+#                 c.add(index)
+# plt.figure(figsize=(10,10),dpi = 500)          
+# venn3(subsets = [a,b,c], set_labels = ('source code oracle', 'test code oracle',"trivial crash"))
+# plt.title("kiled mutants", fontdict={'fontsize': 14})
+# plt.savefig("commons-jexl.png")
+# plt.clf()
+
+
+# In[18]:
+
 
 header = ['mutation_id','mutated_file','mutated_line_number',"mutator","mutation_state",
           'test_id',"test_state","exception","cause","loc"]
-with open('mutations.pickle', 'rb') as handle:
-    data = pickle.load(handle)
 with open("commons-jexl"+'.csv', 'w', encoding='UTF8') as f:
     writer = csv.writer(f)
     # write the header
