@@ -12,8 +12,19 @@ This project includes the experiment setUp for **To kIll a Mutant: An Empirical 
     - [parsing scripts](#tools-parser_scripts)
 
 - [Getting Started](#getting-started)
+    - [commons-validator](#commons-validator)
+    - [commons-io](#commons-io)
+    - [commons-csv](#commons-csv)
+    - [joda-time](#joda-time)
+    - [jsoup](#jsoup)
+    - [commons-jexl](#commons-jexl)
+    - [xmlgraphics](#xmlgraphics)
+    - [commons-lang](#commons-lang)
+    - [gson](#gson)
+    - [commons-text](#commons-text)
+   
 - [Detailed Instructions](#detailed-instructions)
-- [How to run the experiment in general?](#how-to-run-the-experiment-for-each-subject-program)
+- [General Logics](#general-experimental-setups)
 
 
 # Directory structure:
@@ -66,8 +77,28 @@ A csv file and a Venn Graph will be generated.
 
 # Getting Started
 
-To demonstrate how the experiment was run, we configured a Docker image for **commons-validator**. The whole experiment should cost around 5 minutes.  
+# Requirement
+Requirement: Docker installed
 
+To demonstrate how the experiment was run, we configured 10 separate Docker images for all 10 subject programs in the paper. Different subject project's experiment requires different amount of time to run, which is estimated in the table below.
+
+After finishing this step, a **data file**(ProjectName.csv) and a **venn graph** (ProjectName.png) are expected to be generated in the current directory. 
+
+## Estimated Time
+| subject name        | estimated amount of time                                                |
+|---------------------|-------------------------------------------------------------|
+| gson        |             10min                |
+| commons-io     | 1h 40min                         |
+| commons-lang | 2h                             |
+| commons-csv            |         7min                                 |
+| joda-time      |  1h 2min |     
+| jsoup            |             44min              |
+| xmlgraphics          |          7min                                         |
+| commons-text          |     35min   |
+| commons-jexl               |   2h 40min          |
+| commons-validator                 |  4min      |
+
+## commons-validator
 
 pull the image: 
 ```
@@ -83,9 +114,134 @@ docker cp exp_container:/commons-validator/project/commons-validator.csv .
 docker cp exp_container:/commons-validator/project/commons-validator.png .
 ```
 
+
+## gson
+
+```
+docker pull qinfendeheichi/gson-replication:latest
+```
+```
+docker run --name gson qinfendeheichi/gson-replication
+```
+```
+docker cp gson:/gson/gson.csv .
+docker cp gson:/gson/gson.png .
+```
+
+## commons-io
+
+```
+docker pull qinfendeheichi/commons-io-replication:latest
+```
+```
+docker run --name commons-io qinfendeheichi/commons-io-replication
+```
+```
+docker cp commons-io:/commons-io/project/commons-io.csv .
+docker cp commons-io:/commons-io/project/commons-io.png .
+```
+
+## commons-lang
+
+```
+docker pull qinfendeheichi/commons-lang-replication:latest
+```
+```
+docker run --name commons-lang qinfendeheichi/commons-lang-replication
+```
+```
+docker cp commons-lang:/commons-lang/project/commons-lang.csv .
+docker cp commons-lang:/commons-lang/project/commons-lang.png .
+```
+
+
+## commons-csv
+
+```
+docker pull qinfendeheichi/commons-csv-replication:latest
+```
+```
+docker run --name commons-csv qinfendeheichi/commons-csv-replication
+```
+```
+docker cp commons-csv:/commons-csv/project/commons-csv.csv .
+docker cp commons-csv:/commons-csv/project/commons-csv.png .
+```
+
+
+
+## joda-time
+
+```
+docker pull qinfendeheichi/joda-time-replication:latest
+```
+```
+docker run --name joda-time qinfendeheichi/joda-time-replication
+```
+```
+docker cp joda-time:/joda-time/project/joda-time.csv .
+docker cp joda-time:/joda-time/project/joda-time.png .
+```
+
+## jsoup
+
+```
+docker pull qinfendeheichi/jsoup-replication:latest
+```
+```
+docker run --name jsoup qinfendeheichi/jsoup-replication
+```
+```
+docker cp jsoup:/jsoup/project/jsoup.csv .
+docker cp jsoup:/jsoup/project/jsoup.png .
+```
+
+## xmlgraphics
+
+```
+docker pull qinfendeheichi/xmlgraphics:latest
+```
+```
+docker run --name xmlgraphics qinfendeheichi/xmlgraphics-replication
+```
+```
+docker cp xmlgraphics:/xmlgraphics/project/xmlgraphics.csv .
+docker cp xmlgraphics:/xmlgraphics/project/xmlgraphics.png .
+```
+
+
+## commons-text
+
+```
+docker pull qinfendeheichi/commons-text:latest
+```
+```
+docker run --name commons-text qinfendeheichi/commons-text-replication
+```
+```
+docker cp commons-text:/commons-text/project/commons-text.csv .
+docker cp commons-text:/commons-text/project/commons-text.png .
+```
+
+## commons-jexl
+
+```
+docker pull qinfendeheichi/commons-jexl:latest
+```
+```
+docker run --name commons-jexl qinfendeheichi/commons-jexl-replication
+```
+```
+docker cp commons-jexl:/commons-jexl/project/commons-jexl.csv .
+docker cp commons-jexl:/commons-jexl/project/commons-jexl.png .
+```
+
+
+
 # Detailed Instructions
 
-# How to run the experiment for each subject program
+# General experimental setups
+This is the general logics to to run the experiment
 
 ## install PIT
 
