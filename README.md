@@ -104,7 +104,7 @@ After finishing this step, a **data file**(ProjectName.csv) and a **venn graph**
 | jsoup            |             44min              |
 | xmlgraphics          |          7min                                         |
 | commons-text          |     35min   |
-| commons-jexl               |   2h 40min          |
+| commons-jexl               |   2h 40min   (30 GB memory are expected to be occupied)       |
 | commons-validator                 |  4min      |
 
 ## commons-validator
