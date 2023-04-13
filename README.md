@@ -327,4 +327,24 @@ put the appropriate interpret.py file under subject project's directory, and run
 python interpret.py
 ```
 
+# special situations
 
+## classifying test assertions
+
+We classify that a test fails due to test code oracles based on exceptional information. For example, if a test fails with **org.opentest4j.AssertionFailedError**, we know exactly that the test fails due to a test code oracle.   
+Sometimes, a single exception cannot help determine the cause. For example, a test could fail with "java.lang.AssertionError", it could either be from a source code oracle (with using Assert keyword or throw new AssertionError), or from test code oracle(use Assert keyword in test code, throw new AssertionError in test code, or from testing frameworks). Thus we use information from the stacktrace(only the first line). For example, 
+```
+Exception in thread "main" java.lang.AssertionError:
+    at org.junit.Assert.fail(Assert.java:91)
+```
+We know that it is from junit api. 
+However, textually search "truth.", "assertj", "junit", "mockito", etc in the stack trace does not always prove it's from a testing framework. For example, commons-text uses AssertJ assertions. The exceptions can sometimes be "java.lang.AssertionError". The top line in the stack trace would locate the closest exception context to the test code:
+```
+java.lang.AssertionError: 
+Expecting code to raise a throwable.
+
+	at org.apache.commons.text.AlphabetConverterTest.missingDoNotEncodeLettersFromEncodingTest(AlphabetConverterTest.java:120)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+```
+
+However, in this case we would know it fails due to a test code oracle because it's from test code.
