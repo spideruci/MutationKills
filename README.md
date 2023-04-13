@@ -1,5 +1,5 @@
 # MutationKills
-This project includes the experiment setUp for **To kIll a Mutant: An Empirical Study of Mutation Testing Kills**
+This project provides experimental replication setUp and explanation for **To kIll a Mutant: An Empirical Study of Mutation Testing Kills**
 
 # Table of Contents
 - [Directory structure](#directory-structure)
