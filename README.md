@@ -267,7 +267,7 @@ python RQ1.py commons-csv.csv
 Replace "commons-csv.csv" with other csv file's name for other subject project.  
 
 Results are expected to be generated for relevant subject program corresponding to **Table 2** in the paper.  
-Again, data differences are expected but they should not deviate too much from what we reported in the paper.  
+As stated above, due to test flakiness, some data differences are expected but they should not deviate too much from what we reported in the paper.  
 ## RQ2
 How does a test kill a mutant?  
 ```
