@@ -35,9 +35,9 @@ This project provides experimental replication setUp and explanation for **To kI
 
 # Directory structure:
 ## data-csvs:  
-detailed csv data for mutation kills.  
+detailed csv data for mutation kills presented in paper.  
 
-data2.zip contain 5 csv files for xmlgraphics, jsoup, joda-time, gson, commons-validator. 
+data2.zip contains 5 csv files for xmlgraphics, jsoup, joda-time, gson, commons-validator. 
 
 data1.zip contains 5 csv files for commons-csv, commons-io, commons-jexl, commons-lang, commons-text. 
 
@@ -252,7 +252,7 @@ docker cp commons-jexl:/commons-jexl/project/commons-jexl.png .
 In this section, we use this artifact to back up key claims described in the paper.  
 
 From [Getting Started](#getting-started) section, we get a **csv file** (details explained [here](#rows-in-csv-file)) and a **venn graph**. 
-Now we are going to extract relevant data from the csv file to repliate claims we made in the research paper.  
+Now we are going to extract relevant data from the csv file to repliate claims we made in the research paper. (The original data presented in the paper are [here](#data-csvs))
 
 Necessary python scripts are located under tools/RQs directory. Make sure that csv file and python scripts are placed under the same directory.
 
