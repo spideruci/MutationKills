@@ -1,5 +1,5 @@
 # MutationKills
-This project provides experimental replication setUp and explanation for **To kIll a Mutant: An Empirical Study of Mutation Testing Kills**
+This project provides an experimental replication setup and explanation for **To kill a Mutant: An Empirical Study of Mutation Testing Kills**
 
 # Table of Contents
 - [Directory structure](#directory-structure)
@@ -35,7 +35,7 @@ This project provides experimental replication setUp and explanation for **To kI
 
 # Directory structure:
 ## data-csvs:  
-detailed csv data for mutation kills presented in paper.  
+detailed csv data for mutation kills presented in the paper.  
 
 data2.zip contains 5 csv files for xmlgraphics, jsoup, joda-time, gson, commons-validator. 
 
@@ -64,14 +64,14 @@ We included the subject programs under this directory. All programs have already
 ## Tools
 
 ### Tools-OracleTracker
-This project aims at instrumenting the project's code for the instantation of Exception or Error. 
+This project aims at instrumenting the project's code for the instantiation of Exceptions or Errors. 
 
 We placed the generated jar files, **source-throw.jar** and **test-throw.jar** in subject programs.
 
 ### Tools-PIT
 This project is based on PIT 1.9.5 for running mutation testing.
 
-We choose to print the each failing test's exception type, lineNumber, FileName, and MethodName on the scene. 
+We choose to print each failing test's exception type, lineNumber, FileName, and MethodName on the scene. 
 We also print the start of each test case.
 
 ### Tools-parser_scripts
@@ -80,16 +80,16 @@ Place info.txt and interpret.py under the same directory
 A csv file and a Venn Graph will be generated.
 
 ### Tools-RQs
-These are python scripts that takes csv file as input and generate data for research questions presented in the paper.
+These are Python scripts that take a csv file as input and generate data for research questions presented in the paper.
 
 # Getting Started
 
 # Requirement
 Requirement: 
 1. Docker installed  
-2. python3 with matplotlib, pandas, numpy packages  
+2. python3 with matplotlib, pandas, numpy packages (some machines might have both python 2 and python 3 installed, please use it in the command line)  
 
-To demonstrate how the experiment was run, we configured 10 separate Docker images for all 10 subject programs in the paper. Different subject project's experiment requires different amount of time to run, which is estimated in the table below.
+To demonstrate how the experiment was run, we configured 10 separate Docker images for all 10 subject programs in the paper. Different subject projects' experiment requires a different amount of time to run, which is estimated in the table below.
 
 After finishing this step, a **data file**(ProjectName.csv) and a **venn graph** (ProjectName.png) are expected to be generated in the current directory. 
 
@@ -264,9 +264,9 @@ to get such data per project, run
 ```
 python RQ1.py commons-csv.csv
 ```
-Replace "commons-csv.csv" with other csv file's name for other subject project.  
+Replace "commons-csv.csv" with another csv file's name for another subject project.  
 
-Results are expected to be generated for relevant subject program corresponding to **Table 2** in the paper.  
+Results are expected to be generated for the relevant subject program corresponding to **Table 2** in the paper.  
 As stated above, due to test flakiness, some data differences are expected but they should not deviate too much from what we reported in the paper.  
 ## RQ2
 How does a test kill a mutant?  
@@ -274,7 +274,7 @@ How does a test kill a mutant?
 python RQ2.py commons-csv.csv
 ```
 corresponding to **Table 3** in paper.  
-The Venn Graph is generated in the previous section that corresponds to Figure 3 in paper.  
+The Venn Graph is generated in the previous section that corresponds to Figure 3 in the paper.  
 
 ## RQ3
 Are certain mutation operators more prone to certain test failure causes?
@@ -287,12 +287,12 @@ What types of uncaught exceptions kill mutants
 ```
 python RQ4.py commons-csv.csv
 ```
-A figure corresponding to **Figure 4** in paper is expected to be firstly presented. After closin the graph, data are expected to be shown corresponding to **Table 5** in paper.
+A figure corresponding to **Figure 4** in the paper is expected to be first presented. After closing the graph, data are expected to be shown corresponding to **Table 5** in the paper.
 
 # General experimental setups
 This is the general logics to to run the experiment
 
-## install PIT
+## Install PIT
 
 Go to PIT_modified, run:
 ```
@@ -300,7 +300,7 @@ mvn clean install -Dmaven.test.skip
 ```
 
 ## generate jar files to instrument source code/test code
-go to oracle tracker, then run: 
+go to Oracle Tracker, then run: 
 ```
 mvn clean compile assembly:single
 ```
@@ -317,22 +317,22 @@ java -jar "test-throw.jar" target/test-classes
 mvn -Dmaven.main.skip pitest:mutationCoverage >info.txt 2>result.txt
 ```
 
-for multi-module project like gson, instrument all source code/test code compiled files separtely. Then install it with bypassing recompilation. 
+For a multi-module project like gson, instrument all source code/test code compiled files separtely. Then install it with bypassing recompilation. 
 
 ## generate csv file and a venn graph
 
-put the appropriate interpret.py file under subject project's directory, and run:
+put the appropriate interpret.py file under the subject project's directory, and run:
 
 ```
 python interpret.py
 ```
 
-# special situations
+# Special Situations
 
-## classifying test assertions
+## Classifying test assertions
 
 We classify that a test fails due to test code oracles based on exceptional information. For example, if a test fails with **org.opentest4j.AssertionFailedError**, we know exactly that the test fails due to a test code oracle.   
-Sometimes, a single exception cannot help determine the cause. For example, a test could fail with "java.lang.AssertionError", it could either be from a source code oracle (with using Assert keyword or throw new AssertionError), or from test code oracle(use Assert keyword in test code, throw new AssertionError in test code, or from testing frameworks). Thus we use information from the stacktrace(only the first line). For example, 
+Sometimes, a single exception cannot help determine the cause. For example, a test could fail with "java.lang.AssertionError", it could either be from a source code oracle (by using Assert keyword or throw new AssertionError), or from test code oracle(by using Assert keyword in test code, throwing new AssertionError in test code, or from testing frameworks). Thus we use information from the stacktrace(only the first line). For example, 
 ```
 Exception in thread "main" java.lang.AssertionError:
     at org.junit.Assert.fail(Assert.java:91)
@@ -347,4 +347,4 @@ Expecting code to raise a throwable.
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 ```
 
-However, in this case we would know it fails due to a test code oracle because it's from test code.
+However, in this case, we would know it fails due to a test code oracle because it's from test code.
