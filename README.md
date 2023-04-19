@@ -331,8 +331,11 @@ python interpret.py
 
 ## Classifying test assertions
 
-We classify that a test fails due to test code oracles based on exceptional information. For example, if a test fails with **org.opentest4j.AssertionFailedError**, we know exactly that the test fails due to a test code oracle.   
-Sometimes, a single exception cannot help determine the cause. For example, a test could fail with "java.lang.AssertionError", it could either be from a source code oracle (by using Assert keyword or throw new AssertionError), or from test code oracle(by using Assert keyword in test code, throwing new AssertionError in test code, or from testing frameworks). Thus we use information from the stacktrace(only the first line). For example, 
+We classify that a test fails due to test code oracles based on exceptional information.  
+For example, if a test fails with **org.opentest4j.AssertionFailedError**, we know exactly that the test fails due to a test code oracle.   
+Sometimes, a single exception cannot help determine the cause. For example, a test could fail with "java.lang.AssertionError", it could either be from a source code oracle (by using Assert keyword or throw new AssertionError), or from test code oracle(by using Assert keyword in test code, throwing new AssertionError in test code, or from testing frameworks).  
+
+Thus we use information from the stacktrace(only the first line). For example, 
 ```
 Exception in thread "main" java.lang.AssertionError:
     at org.junit.Assert.fail(Assert.java:91)
