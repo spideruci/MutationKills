@@ -25,10 +25,10 @@ This project provides an experimental replication setup and explanation for **To
     - [commons-text](#commons-text)
    
 - [Detailed Instructions](#detailed-instructions)
-  - [RQ1](#RQ1)
-  - [RQ2](#RQ2)
-  - [RQ3](#RQ3)
-  - [RQ4](#RQ4)
+  - [RQ1](#rq1)
+  - [RQ2](#rq2)
+  - [RQ3](#rq3)
+  - [RQ4](#rq4)
 
 - [General Logics](#general-experimental-setups)
 
@@ -82,14 +82,13 @@ A csv file and a Venn Graph will be generated.
 ### Tools-RQs
 These are Python scripts that take a csv file as input and generate data for research questions presented in the paper.
 
-# Getting Started
+# Getting Started 
 
 # Requirement
 Requirement: 
 1. Docker must be installed on your system.
 2. Python 3 is required, with the following packages installed: matplotlib, pandas, and numpy. (Please note, some systems may have both Python 2 and Python 3 installed; be sure to use Python 3 in the command line for this project.)
-3. 
-In order to illustrate the experimental procedure, we have prepared 10 distinct Docker images, each corresponding to the 10 subject programs discussed in the study. The time required to run the experiment varies across different subject projects, as estimated in the table provided below.
+3. In order to illustrate the experimental procedure, we have prepared 10 distinct Docker images, each corresponding to the 10 subject programs discussed in the study. The time required to run the experiment varies across different subject projects, as estimated in the table provided below.
 
 1. Docker installed  
 2. python3 with matplotlib, pandas, numpy packages (some machines might have both python 2 and python 3 installed, please use it in the command line)  
@@ -270,6 +269,7 @@ It's important to note that the experimental process may exhibit some level of f
 The results obtained from the data analysis, as detailed in the study, are anticipated to be **very similar**, but not necessarily identical, to those achieved in a separate experimental run. This consistency underscores the overall conclusions and assertions presented in the paper.
 
 ## RQ1
+
 How many tests execute the mutation and what are their failure rates?  
 to get such data per project, run   
 ```
@@ -280,6 +280,7 @@ Replace "commons-csv.csv" with another csv file's name for another subject proje
 Results are expected to be generated for the relevant subject program corresponding to **Table 2** in the paper.  
 As stated above, due to test flakiness, some data differences are expected but they should not deviate too much from what we reported in the paper.  
 ## RQ2
+
 How does a test kill a mutant?  
 ```
 python RQ2.py commons-csv.csv
@@ -288,12 +289,14 @@ corresponding to **Table 3** in paper.
 The Venn Graph is generated in the previous section that corresponds to Figure 3 in the paper.  
 
 ## RQ3
+
 Are certain mutation operators more prone to certain test failure causes?
 ```
 python RQ3.py commons-csv.csv
 ```
 corresponding to **Table 4** in paper.  
 ## RQ4
+
 What types of uncaught exceptions kill mutants
 ```
 python RQ4.py commons-csv.csv
