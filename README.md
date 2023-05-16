@@ -100,7 +100,7 @@ Upon completion of these steps, two types of outputs will be generated in the cu
 
 ## Estimated Time
 
-Please be aware that these time estimations are based on machines utilizing ARM architecture, as the experiment is expected to run significantly faster on such systems. These estimates are derived from trials conducted in a Docker container on a 2021 MacBook Pro utilizing the M1 Pro chip. If you're using a 2016 MacBook Pro equipped with an Intel chip, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator'.
+Please be aware that these time estimations are based on machines utilizing **ARM architecture**, as the experiment is expected to run **significantly faster** on such systems. These estimates are derived from trials conducted in a Docker container on a **2021 MacBook Pro** utilizing the M1 Pro chip. If you're using a 2016 MacBook Pro equipped with an Intel chip, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator'.
 
 | subject name        | estimated amount of time                                                |
 |---------------------|-------------------------------------------------------------|
