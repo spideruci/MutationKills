@@ -86,14 +86,22 @@ These are Python scripts that take a csv file as input and generate data for res
 
 # Requirement
 Requirement: 
+1. Docker must be installed on your system.
+2. Python 3 is required, with the following packages installed: matplotlib, pandas, and numpy. (Please note, some systems may have both Python 2 and Python 3 installed; be sure to use Python 3 in the command line for this project.)
+3. 
+In order to illustrate the experimental procedure, we have prepared 10 distinct Docker images, each corresponding to the 10 subject programs discussed in the study. The time required to run the experiment varies across different subject projects, as estimated in the table provided below.
+
 1. Docker installed  
 2. python3 with matplotlib, pandas, numpy packages (some machines might have both python 2 and python 3 installed, please use it in the command line)  
 
 To demonstrate how the experiment was run, we configured 10 separate Docker images for all 10 subject programs in the paper. Different subject projects' experiment requires a different amount of time to run, which is estimated in the table below.
 
-After finishing this step, a **data file**(ProjectName.csv) and a **venn graph** (ProjectName.png) are expected to be generated in the current directory. 
+Upon completion of these steps, two types of outputs will be generated in the current directory: a **data file** (named as 'ProjectName.csv') and a **Venn diagram** (named as 'ProjectName.png').
 
 ## Estimated Time
+
+Please be aware that these time estimations are based on machines utilizing ARM architecture, as the experiment is expected to run significantly faster on such systems. These estimates are derived from trials conducted in a Docker container on a 2021 MacBook Pro utilizing the M1 Pro chip. If you're using a 2016 MacBook Pro equipped with an Intel chip, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator'.
+
 | subject name        | estimated amount of time                                                |
 |---------------------|-------------------------------------------------------------|
 | gson        |             10min                |
@@ -254,9 +262,12 @@ In this section, we use this artifact to back up key claims described in the pap
 From [Getting Started](#getting-started) section, we get a **csv file** (details explained [here](#rows-in-csv-file)) and a **venn graph**. 
 Now we are going to extract relevant data from the csv file to repliate claims we made in the research paper. (The original data presented in the paper are [here](#data-csvs))
 
-Necessary python scripts are located under tools/RQs directory. Make sure that csv file and python scripts are placed under the same directory.
+The essential Python scripts for this project can be found in the 'tools/RQs' directory. Please ensure that the CSV file and Python scripts are situated in the same directory.
 
-Notice that there exists flakiness in experiment: 1. flaky tests or tests with flaky coverages 2. PIT's resource constraints (flakiness when labeling some TIMED_OUT, MEMORY_ERROR mutants). The results obtained from the data analysis presented in the paper are expected to be **pretty close** rather than exactly the same to those obtained in another experimental run. This supports the general conclusions and claims made in the paper.
+It's important to note that the experimental process may exhibit some level of flakiness, which could be due to:
+1. Flaky tests or tests that result in flaky coverage.
+2. Constraints in PIT resources, leading to flakiness when labeling certain TIMED_OUT or MEMORY_ERROR mutants.
+The results obtained from the data analysis, as detailed in the study, are anticipated to be **very similar**, but not necessarily identical, to those achieved in a separate experimental run. This consistency underscores the overall conclusions and assertions presented in the paper.
 
 ## RQ1
 How many tests execute the mutation and what are their failure rates?  
