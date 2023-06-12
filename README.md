@@ -90,9 +90,6 @@ Requirement:
 2. Python 3 is required, with the following packages installed: matplotlib, pandas, and numpy. (Please note, some systems may have both Python 2 and Python 3 installed; be sure to use Python 3 in the command line for this project.)
 3. In order to illustrate the experimental procedure, we have prepared 10 distinct Docker images, each corresponding to the 10 subject programs discussed in the study. The time required to run the experiment varies across different subject projects, as estimated in the table provided below.
 
-1. Docker installed  
-2. python3 with matplotlib, pandas, numpy packages (some machines might have both python 2 and python 3 installed, please use it in the command line)  
-
 To demonstrate how the experiment was run, we configured 10 separate Docker images for all 10 subject programs in the paper. Different subject projects' experiment requires a different amount of time to run, which is estimated in the table below.
 
 Upon completion of these steps, two types of outputs will be generated in the current directory: a **data file** (named as 'ProjectName.csv') and a **Venn diagram** (named as 'ProjectName.png').
