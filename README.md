@@ -1,5 +1,5 @@
 # MutationKills
-This project provides an experimental replication setup and explanation for **To kill a Mutant: An Empirical Study of Mutation Testing Kills**
+This project provides an experimental replication setup and explanation for **To Kill a Mutant: An Empirical Study of Mutation Testing Kills**
 
 # Table of Contents
 - [Directory structure](#directory-structure)
@@ -88,7 +88,7 @@ These are Python scripts that take a csv file as input and generate data for res
 Requirement: 
 1. Docker must be installed on your system.
 2. Python 3 is required, with the following packages installed: matplotlib, pandas, and numpy. (Please note, some systems may have both Python 2 and Python 3 installed; be sure to use Python 3 in the command line for this project.)
-3. In order to illustrate the experimental procedure, we have prepared 10 distinct Docker images, each corresponding to the 10 subject programs discussed in the study. The time required to run the experiment varies across different subject projects, as estimated in the table provided below.
+3. To illustrate the experimental procedure, we have prepared 10 distinct Docker images, each corresponding to the 10 subject programs discussed in the study. The time required to run the experiment varies across different subject projects, as estimated in the table provided below.
 
 To demonstrate how the experiment was run, we configured 10 separate Docker images for all 10 subject programs in the paper. Different subject projects' experiment requires a different amount of time to run, which is estimated in the table below.
 
@@ -256,7 +256,7 @@ docker cp commons-jexl:/commons-jexl/project/commons-jexl.png .
 In this section, we use this artifact to back up key claims described in the paper.  
 
 From [Getting Started](#getting-started) section, we get a **csv file** (details explained [here](#rows-in-csv-file)) and a **venn graph**. 
-Now we are going to extract relevant data from the csv file to repliate claims we made in the research paper. (The original data presented in the paper are [here](#data-csvs))
+Now we are going to extract relevant data from the csv file to replicate claims we made in the research paper. (The original data presented in the paper are [here](#data-csvs))
 
 The essential Python scripts for this project can be found in the 'tools/RQs' directory. Please ensure that the CSV file and Python scripts are situated in the same directory.
 
@@ -301,7 +301,7 @@ python RQ4.py commons-csv.csv
 A figure corresponding to **Figure 4** in the paper is expected to be first presented. After closing the graph, data are expected to be shown corresponding to **Table 5** in the paper.
 
 # General experimental setups
-This is the general logics to to run the experiment
+This is the general logics to run the experiment
 
 ## Install PIT
 
@@ -344,9 +344,9 @@ python interpret.py
 
 We classify that a test fails due to test code oracles based on exceptional information.  
 For example, if a test fails with **org.opentest4j.AssertionFailedError**, we know exactly that the test fails due to a test code oracle.   
-Sometimes, a single exception cannot help determine the cause. For example, a test could fail with "java.lang.AssertionError", it could either be from a source code oracle (by using Assert keyword or throw new AssertionError), or from test code oracle(by using Assert keyword in test code, throwing new AssertionError in test code, or from testing frameworks).  
+Sometimes, a single exception cannot help determine the cause. For example, a test could fail with "java.lang.AssertionError", it could either be from a source code oracle (by using Assert keyword or throwing new AssertionError), or from test code oracle(by using Assert keyword in test code, throwing new AssertionError in test code, or from testing frameworks).  
 
-Thus we use information from the stacktrace(only the first line). For example, 
+Thus we use information from the stack trace(only the first line). For example, 
 ```
 Exception in thread "main" java.lang.AssertionError:
     at org.junit.Assert.fail(Assert.java:91)
