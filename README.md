@@ -1,5 +1,6 @@
 # MutationKills
-This project provides an experimental replication setup and explanation for **To Kill a Mutant: An Empirical Study of Mutation Testing Kills**
+This project provides an experimental replication setup for **To Kill a Mutant: An Empirical Study of Mutation Testing Kills**
+General data structure and other documentation for the experiment are introduced [here](Tools/README.md).
 
 # Table of Contents
 
@@ -36,11 +37,11 @@ Upon completion of these steps, two types of outputs will be generated in the cu
 
 ## Estimated Time
 
-Please be aware that these time estimations are based on machines utilizing **ARM architecture**, as the experiment is expected to run **significantly faster** on such systems with the provided arm-based docker images. These estimates are derived from trials conducted in a arm-based Docker container on a **2021 MacBook Pro** utilizing the M1 Pro chip. 
+Please be aware that these time estimations are based on machines utilizing **ARM architecture**, as the experiment is expected to run **significantly faster** on such systems with the provided arm-based docker images. These estimates are derived from trials conducted in an arm-based Docker container on a **2021 MacBook Pro** utilizing the M1 Pro chip. 
 
-If you're using other machines using x86 architecture, such as a 2016 MacBook Pro equipped with an Intel chip or windows machine, you could still run the provided 10 x86-based docker images with the latest version of Docker. However, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator' on Macbook Pro 2021.
+If you're using other machines using x86 architecture, such as a 2016 MacBook Pro equipped with an Intel chip or Windows machine, you could still run the provided 10 x86-based docker images with the latest version of Docker. However, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator' on Macbook Pro 2021.
 
-Alternatively, we also configured one x86-based docker image for x86-based machines in the f. Detailed instructions for building docker images for other subject programs are provided in [Data Structure](Tools/README.md) section.
+Alternatively, we also configured one x86-based docker image for x86-based machines in the f. Detailed instructions for building docker images for other subject programs are provided in the [Data Structure](Tools/README.md) section.
 
 
 
@@ -218,7 +219,7 @@ docker cp commons-jexl:/commons-jexl/project/commons-jexl.png .
 In this section, we use this artifact to back up key claims described in the paper.  
 
 From [Getting Started](#getting-started) section, we get a **csv file** (details explained [here](Tools/README.md#rows-in-csv-file)) and a **venn graph**. 
-Now we are going to extract relevant data from the csv file to replicate claims we made in the research paper. (The original data presented in the paper are [here](Tools/README.md#data-csvs))
+Now we are going to extract relevant data from the csv file to replicate the claims we made in the research paper. (The original data presented in the paper are [here](Tools/README.md#data-csvs))
 
 The essential Python scripts for this project can be found in the 'tools/RQs' directory. Please ensure that the CSV file and Python scripts are situated in the same directory.
 
