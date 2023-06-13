@@ -12,7 +12,7 @@ This page provides an explanation of the tools and data structure for the experi
     - [parsing scripts](#tools-parser_scripts)
     - [RQs](#tools-rqs)
  - [General Logics](#general-experimental-setups)
- - [Docker Images] (#docker-images)
+ - [Docker Images](#docker-images)
 
 
 
@@ -105,6 +105,7 @@ python interpret.py
 ```
 
 # Docker Images:
+
 We provided all arm-based docker images and 1 x86-based docker image for commons-validator. Here, we provided additional information to help create docker file for other subject programs.
 
 This is an example of the instructions of a docker file for commons-valdiator. pitest-1-9.5, interpret.py, pom.xml for the subject project, together with Dockerfile should be placed under the same root directory.
