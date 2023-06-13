@@ -42,7 +42,7 @@ Each row in the csv file has these fields:
 
 
 ## subject programs
-We included the subject programs under this directory. All programs have already been configured to run the experiment. 
+We included the subject programs under this directory. All programs have already been configured with jar files for instrumentation and maven dependencies to run the experiment. 
 
 ## Tools
 
@@ -63,7 +63,7 @@ To parse the text report from PIT, place info.txt and interpret.py under the sam
 A csv file and a Venn Graph will then be generated.
 
 ### Tools-RQs
-These are Python scripts that take a csv file as input and generate data for research questions presented in the paper.
+These are Python scripts that take a csv file as input and generate data for individual research questions presented in the paper.
 
 
 # General experimental setups
@@ -82,7 +82,6 @@ go to Oracle Tracker, then run:
 mvn clean compile assembly:single
 ```
 to distinguish the jar file for source code and test code, simply replace "testthrow " with "sourcethrow " in OracleVisitor.java at line 47.
-We already placed both two jar files for the subject programs.
 
 ## Run mutation testing
 go to subject program's directory, run
@@ -106,7 +105,7 @@ python interpret.py
 
 # Docker Images:
 
-We provided all arm-based docker images and 1 x86-based docker image for commons-validator. Here, we provided additional information to help create docker file for other subject programs.
+Here are options to run the experiment in a docker container. We provided all arm-based docker images and 1 x86-based docker image for commons-validator. Here, we provided additional information to help create docker file for other subject programs.
 
 This is an example of the instructions of a docker file for commons-valdiator. pitest-1-9.5, interpret.py, pom.xml for the subject project, together with Dockerfile should be placed under the same root directory.
 The logics are as follows in the following four code blocks: making interpret.py an executable and installing python dependencies, installing PIT dependency, installing subject project's dependencies, running the experiment and parsing the results.
