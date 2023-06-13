@@ -58,7 +58,7 @@ We choose to print each failing test's exception type, lineNumber, FileName, and
 We also print the start of each test case.
 
 ### Tools-parser_scripts
-We did post-analysis of the output of PIT. All output from System Standard Error would be directed to the file **info.txt**.   
+We did a post-analysis of the output of PIT. All output from System Standard Error would be directed to the file **info.txt**.   
 To parse the text report from PIT, place info.txt and interpret.py under the same directory. Each script is uniquely customized for the subject program. 
 A csv file and a Venn Graph will then be generated.
 
@@ -105,10 +105,10 @@ python interpret.py
 
 # Docker Images:
 
-Here are options to run the experiment in a docker container. We provided all arm-based docker images and 1 x86-based docker image for commons-validator. Here, we provided additional information to help create docker file for other subject programs.
+Here are options to run the experiment in a docker container. We provided all arm-based docker images and 1 x86-based docker image for commons-validator. Here, we provided additional information to help create docker files for other subject programs.
 
-This is an example of the instructions of a docker file for commons-valdiator. pitest-1-9.5, interpret.py, pom.xml for the subject project, together with Dockerfile should be placed under the same root directory.
-The logics are as follows in the following four code blocks: making interpret.py an executable and installing python dependencies, installing PIT dependency, installing subject project's dependencies, running the experiment and parsing the results.
+This is an example of the instructions of a docker file for commons-valdiator. Four files, including pitest-1.9.5, interpret.py, and the pom.xml for the subject project, together with Dockerfile, should be placed under the same root directory.
+The logics are as follows in the following four code blocks: making interpret.py an executable and installing Python dependencies, installing PIT dependency, installing the subject project's dependencies, running the experiment and parsing the results.
 
 ```
 FROM python:3.9-slim-buster
