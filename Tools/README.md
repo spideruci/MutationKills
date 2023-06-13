@@ -1,4 +1,4 @@
-This page provides an explanation of the tools and data structure for the experiment
+For reusability, this page provides an explanation of the tools and data structure for the experiment. 
 
 # Table of Contents
 
