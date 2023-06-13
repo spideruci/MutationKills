@@ -1,5 +1,5 @@
 # MutationKills
-This project provides an experimental replication setup for **To Kill a Mutant: An Empirical Study of Mutation Testing Kills**
+This project provides an experimental replication setup for **To Kill a Mutant: An Empirical Study of Mutation Testing Kills**. 
 For reusability, general data structure and other documentation for the experiment are introduced [here](Tools/README.md).
 
 # Table of Contents
