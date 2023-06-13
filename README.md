@@ -96,7 +96,13 @@ Upon completion of these steps, two types of outputs will be generated in the cu
 
 ## Estimated Time
 
-Please be aware that these time estimations are based on machines utilizing **ARM architecture**, as the experiment is expected to run **significantly faster** on such systems. These estimates are derived from trials conducted in a Docker container on a **2021 MacBook Pro** utilizing the M1 Pro chip. If you're using a 2016 MacBook Pro equipped with an Intel chip, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator'.
+Please be aware that these time estimations are based on machines utilizing **ARM architecture**, as the experiment is expected to run **significantly faster** on such systems with the provided linux-amd docker imageS. These estimates are derived from trials conducted in a Docker container on a **2021 MacBook Pro** utilizing the M1 Pro chip. 
+
+If you're using other machines using amd architecture, such as a 2016 MacBook Pro equipped with an Intel chip or windows machine, you could run still run the provided 10 linux-amd dockers with the latest version of Docker. However, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator'.
+
+Alternatively, we also configured one linux-amd-based docker image for amd-based machines. Detailed instructions for building docker images for other subject programs are provided in [General Logics](#general-experimental-setups) section.
+
+
 
 | subject name        | estimated amount of time                                                |
 |---------------------|-------------------------------------------------------------|
@@ -125,6 +131,22 @@ get the csv file and venn graph from the container to the current directory
 ```
 docker cp exp_container:/commons-validator/project/commons-validator.csv .
 docker cp exp_container:/commons-validator/project/commons-validator.png .
+```
+
+For amd-based machines that use intel chips:
+
+pull the image: 
+```
+docker pull qinfendeheichi/validator-replication-amd:latest
+```
+run the container with a name (exp_container)
+``` 
+docker run --name exp_container_amd qinfendeheichi/validator-replication
+```
+get the csv file and venn graph from the container to the current directory
+```
+docker cp exp_container_amd:/commons-validator/project/commons-validator.csv .
+docker cp exp_container_amd:/commons-validator/project/commons-validator.png .
 ```
 
 
