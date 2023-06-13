@@ -1,4 +1,4 @@
-This page provides explanation of tools and data structure for the experiment
+This page provides an explanation of the tools and data structure for the experiment
 
 # Table of Contents
 
@@ -12,6 +12,7 @@ This page provides explanation of tools and data structure for the experiment
     - [parsing scripts](#tools-parser_scripts)
     - [RQs](#tools-rqs)
  - [General Logics](#general-experimental-setups)
+ - [Docker Images] (#docker-images)
 
 
 
@@ -53,20 +54,20 @@ We placed the generated jar files, **source-throw.jar** and **test-throw.jar** i
 ### Tools-PIT
 This project is based on PIT 1.9.5 for running mutation testing.
 
-We choose to print each failing test's exception type, lineNumber, FileName, and MethodName on the scene. 
+We choose to print each failing test's exception type, lineNumber, FileName, and MethodName on the scene to standard error output. 
 We also print the start of each test case.
 
 ### Tools-parser_scripts
-To parse the text report from PIT. All output from System Standard Error would be directed to the file **info.txt**.   
-Place info.txt and interpret.py under the same directory
-A csv file and a Venn Graph will be generated.
+We did post-analysis of the output of PIT. All output from System Standard Error would be directed to the file **info.txt**.   
+To parse the text report from PIT, place info.txt and interpret.py under the same directory. Each script is uniquely customized for the subject program. 
+A csv file and a Venn Graph will then be generated.
 
 ### Tools-RQs
 These are Python scripts that take a csv file as input and generate data for research questions presented in the paper.
 
 
 # General experimental setups
-This is the general logics to run the experiment
+This is the general logic to run the experiment
 
 ## Install PIT
 
@@ -102,6 +103,48 @@ put the appropriate interpret.py file under the subject project's directory, and
 ```
 python interpret.py
 ```
+
+# Docker Images:
+We provided all arm-based docker images and 1 x86-based docker image for commons-validator. Here, we provided additional information to help create docker file for other subject programs.
+
+This is an example of the instructions of a docker file for commons-valdiator. pitest-1-9.5, interpret.py, pom.xml for the subject project, together with Dockerfile should be placed under the same root directory.
+The logics are as follows in the following four code blocks: making interpret.py an executable and installing python dependencies, installing PIT dependency, installing subject project's dependencies, running the experiment and parsing the results.
+
+```
+FROM python:3.9-slim-buster
+COPY interpret.py /
+RUN pip install numpy
+RUN pip install matplotlib
+RUN pip install matplotlib-venn
+RUN pip install pyinstaller
+RUN apt-get update && apt-get install -y binutils
+RUN pyinstaller --onefile interpret.py
+RUN ls -la
+
+FROM maven:3.8.6-jdk-8 AS build
+WORKDIR /commons-validator
+COPY pom.xml /commons-validator/project/
+COPY source-throw.jar /commons-validator/project/
+COPY test-throw.jar /commons-validator/project/
+COPY src/ /commons-validator/project/src/
+COPY pitest-1.9.5/ /commons-validator/pitest-1.9.5/
+COPY --from=0 /dist/interpret /commons-validator/project/
+WORKDIR /commons-validator/pitest-1.9.5
+RUN mvn clean install -Dmaven.test.skip
+
+WORKDIR /commons-validator/project
+RUN mvn dependency:go-offline
+
+CMD cd /commons-validator/project\
+    && mvn clean compile test-compile \
+    && java -jar "source-throw.jar" target/classes \
+    && java -jar "test-throw.jar" target/test-classes \
+    && mvn "-Dmaven.main.skip" pitest:mutationCoverage >info.txt 2>result.txt \
+    && ./interpret
+```
+
+
+
 
 # Special Situations
 
