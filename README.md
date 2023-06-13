@@ -55,7 +55,7 @@ Alternatively, we also configured one linux-amd-based docker image for amd-based
 | xmlgraphics          |          7min                                         |
 | commons-text          |     35min   |
 | commons-jexl               |   2h 40min   (30 GB memory are expected to be occupied)       |
-| commons-validator                 |  4min      |
+| commons-validator                 |  4min  (8min for surface book 2 machine)  |
 
 ## commons-validator
 
