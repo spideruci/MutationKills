@@ -40,9 +40,9 @@ Upon completion of these steps, two types of outputs will be generated in the cu
 
 Please be aware that these time estimations are based on machines utilizing **ARM architecture**, as the experiment is expected to run **significantly faster** on such systems with the provided arm-based docker images. These estimates are derived from trials conducted in an arm-based Docker container on a **2021 MacBook Pro** utilizing the M1 Pro chip. 
 
-If you're using other machines using x86 architecture, such as a 2016 MacBook Pro equipped with an Intel chip or Windows machine, you could still run the provided 10 x86-based docker images with the latest version of Docker. However, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator' on Macbook Pro 2021.
+If you're using other machines using x86 architecture, such as a 2016 MacBook Pro equipped with an Intel chip or Windows machine, you could still run the provided 10 arm-based docker images with the latest version of Docker. However, you may find that the required time to run the experiment can be considerably longer, because docker runs these in an emulated mode. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator' on Macbook Pro 2021.
 
-Alternatively, we also configured one x86-based docker image for x86-based machines in the Detailed instructions section for commons-validator. Procedures of building docker images for other subject programs are provided in the [Data Structure](Tools/README.md) section.
+To demonstrate the experiment we conducted in not limited to arm-based machines, we also configured one x86-based docker image for x86-based machines in the Detailed Instructions section for commons-validator. Procedures of building docker images for other subject programs are provided in the [Data Structure](Tools/README.md) section.
 
 
 
