@@ -133,7 +133,7 @@ docker cp exp_container:/commons-validator/project/commons-validator.csv .
 docker cp exp_container:/commons-validator/project/commons-validator.png .
 ```
 
-For amd-based machines that use intel chips:
+### For amd-based machines that use intel chips:
 
 pull the image: 
 ```
@@ -141,7 +141,7 @@ docker pull qinfendeheichi/validator-replication-amd:latest
 ```
 run the container with a name (exp_container)
 ``` 
-docker run --name exp_container_amd qinfendeheichi/validator-replication
+docker run --name exp_container_amd qinfendeheichi/validator-replication-amd
 ```
 get the csv file and venn graph from the container to the current directory
 ```
