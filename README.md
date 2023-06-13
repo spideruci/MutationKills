@@ -40,7 +40,7 @@ Please be aware that these time estimations are based on machines utilizing **AR
 
 If you're using other machines using amd architecture, such as a 2016 MacBook Pro equipped with an Intel chip or windows machine, you could run still run the provided 10 linux-amd dockers with the latest version of Docker. However, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator'.
 
-Alternatively, we also configured one linux-amd-based docker image for amd-based machines. Detailed instructions for building docker images for other subject programs are provided in [General Logics](#general-experimental-setups) section.
+Alternatively, we also configured one linux-amd-based docker image for amd-based machines. Detailed instructions for building docker images for other subject programs are provided in [Data Structure](Tools/README.md) section.
 
 
 
