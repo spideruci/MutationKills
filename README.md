@@ -1,6 +1,6 @@
 # MutationKills
 This project provides an experimental replication setup for **To Kill a Mutant: An Empirical Study of Mutation Testing Kills**
-General data structure and other documentation for the experiment are introduced [here](Tools/README.md).
+For reusability, general data structure and other documentation for the experiment are introduced [here](Tools/README.md).
 
 # Table of Contents
 
@@ -41,7 +41,7 @@ Please be aware that these time estimations are based on machines utilizing **AR
 
 If you're using other machines using x86 architecture, such as a 2016 MacBook Pro equipped with an Intel chip or Windows machine, you could still run the provided 10 x86-based docker images with the latest version of Docker. However, you may find that the required time to run the experiment can be considerably longer. For instance, it may take approximately 80 minutes to run the experiment for 'commons-validator' on Macbook Pro 2021.
 
-Alternatively, we also configured one x86-based docker image for x86-based machines in the f. Detailed instructions for building docker images for other subject programs are provided in the [Data Structure](Tools/README.md) section.
+Alternatively, we also configured one x86-based docker image for x86-based machines in the Detailed instructions section for commons-validator. Procedures of building docker images for other subject programs are provided in the [Data Structure](Tools/README.md) section.
 
 
 
@@ -59,6 +59,8 @@ Alternatively, we also configured one x86-based docker image for x86-based machi
 | commons-validator                 |  4min  (8min for surface book 2 machine)  |
 
 ## commons-validator
+
+### For arm-based machines:
 
 pull the image: 
 ```
