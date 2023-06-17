@@ -32,7 +32,6 @@ name = sys.argv[1]
 # In[11]:
 
 
-name = "commons-io.csv"
 mutators = ['PrimitiveReturns',"Math","ConditionalsBoundary","NullReturnVals",
             "BooleanFalseReturnVals","VoidMethodCall","BooleanTrueReturnVals",
            "NegateConditionals","EmptyObjectReturnVals","Increments"]
